@@ -42,7 +42,9 @@ const io = new Server(server, {
     }
 });
 
-const redisClient = createClient();
+const redisClient = createClient({
+    url: process.env.REDIS_URL
+});
 redisClient.on('error', err => logger.error('Redis Client Error', err));
 
 
