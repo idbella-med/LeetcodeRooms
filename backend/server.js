@@ -407,13 +407,17 @@ const startServer = async () => {
     }
 };
 
-if (process.env.NODE_ENV === 'production') {
-    const frontendBuildPath = path.resolve(__dirname, '..', 'frontend', 'leetcodeRooms', 'dist');
-
-    app.use(express.static(frontendBuildPath));
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(frontendBuildPath, 'index.html'));
-    });
-}
+// Frontend static serving is disabled — the frontend build does not exist in the
+// deployed environment. The frontend should be deployed as a separate service or
+// built and committed to the repo before re-enabling this block.
+//
+// if (process.env.NODE_ENV === 'production') {
+//     const frontendBuildPath = path.resolve(__dirname, '..', 'frontend', 'leetcodeRooms', 'dist');
+//
+//     app.use(express.static(frontendBuildPath));
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.resolve(frontendBuildPath, 'index.html'));
+//     });
+// }
 
 startServer();
