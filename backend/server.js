@@ -249,8 +249,8 @@ app.get('/lobbies/:lobbyId/leaderboard', async(req, res)=>{
 });
 
 app.get('/lobbies/:lobbyId/lobbyType', async(req, res)=>{
+    const lobbyId = req.params.lobbyId;
     try{
-        const lobbyId = req.params.lobbyId;
         const lobbyType = await getLobbyType(lobbyId);
 
         if (!lobbyType){
